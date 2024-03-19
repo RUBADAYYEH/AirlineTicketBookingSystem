@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportTicketBookingSystem", "AirportTicketBookingSystem.csproj", "{70062A43-1509-4C4F-A8B3-AC913A7FAEA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportTicketBookingSystemTest", "..\AirportTicketBookingSystemTest\AirportTicketBookingSystemTest.csproj", "{A0473E84-AE42-4888-90B6-8E508C741942}"
+	ProjectSection(ProjectDependencies) = postProject
+		{70062A43-1509-4C4F-A8B3-AC913A7FAEA8} = {70062A43-1509-4C4F-A8B3-AC913A7FAEA8}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AirportTicketBookingSystemProject", "AirportTicketBookingSystemProject", "{6F0EB5C4-F251-4DFE-B308-04057340FFBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70062A43-1509-4C4F-A8B3-AC913A7FAEA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70062A43-1509-4C4F-A8B3-AC913A7FAEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70062A43-1509-4C4F-A8B3-AC913A7FAEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70062A43-1509-4C4F-A8B3-AC913A7FAEA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0473E84-AE42-4888-90B6-8E508C741942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0473E84-AE42-4888-90B6-8E508C741942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0473E84-AE42-4888-90B6-8E508C741942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0473E84-AE42-4888-90B6-8E508C741942}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70062A43-1509-4C4F-A8B3-AC913A7FAEA8} = {6F0EB5C4-F251-4DFE-B308-04057340FFBD}
+		{A0473E84-AE42-4888-90B6-8E508C741942} = {6F0EB5C4-F251-4DFE-B308-04057340FFBD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E02551C-AE0F-4014-BD01-65A4454EA585}
+	EndGlobalSection
+EndGlobal
