@@ -13,7 +13,7 @@ namespace AirportTicketBookingSystem.Domain.FlightManagement
         public required DateTime DepartureDate { get; init; }
         public required string DepartureAirport { get; init; }
         public required string ArrivalAirport { get; set; }
-        public required Enum FlightClass { get; init; }
+        public required  FlightClass FlightClass { get; init; }
 
         public override string ToString()
         {
