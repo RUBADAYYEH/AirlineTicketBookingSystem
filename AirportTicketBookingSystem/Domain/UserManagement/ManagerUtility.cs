@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace AirportTicketBookingSystem.Domain.UserManagement
 {
-    public enum UserToken
+    public class ManagerUtility:Utilities
     {
-        Passenger,
-        Manager
+        public static void Initialize()
+        {
+
+        }
     }
 }
