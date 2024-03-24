@@ -1,21 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AirportTicketBookingSystem.Domain.FlightManagement
 {
     public class Flight
     {
-        public decimal Price {  get; set; }
-        public string DepartureCountry { get; init; }
-        public string DestinationCountry { get; init; }
-        public DateTime DepartureDate { get; init; }
-        public string DepartureAirport { get; init; }
-        public string ArrivalAirport { get; set;}
-        public Enum FlightClass { get; init; }
 
-        
+        public required int FlightId { get; init; }
+        public decimal Price { get; set; }
+        public required string DepartureCountry { get; init; }
+        public required string DestinationCountry { get; init; }
+        public required DateTime DepartureDate { get; init; }
+        public required string DepartureAirport { get; init; }
+        public required string ArrivalAirport { get; set; }
+        public required Enum FlightClass { get; init; }
+
+        public override string ToString()
+        {
+            return $"Fight no: {FlightId}: From {DepartureCountry} To {DestinationCountry}: {DepartureDate}: {DepartureAirport}: {ArrivalAirport}: {FlightClass}: {Price}";
+        }
+        public string SaveToFile()
+        {
+            return $"{FlightId};{Price};{DepartureCountry};{DestinationCountry};{DepartureDate};{DepartureAirport};{ArrivalAirport};{FlightClass}";
+        }
+
+
     }
 }

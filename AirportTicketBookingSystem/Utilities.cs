@@ -3,56 +3,67 @@ using AirportTicketBookingSystem.Domain.UserManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AirportTicketBookingSystem
-  
+
 {
-   
+
     public class Utilities
     {
-        private static List<User> users = new();
-        private static List<Flight> flights = new();
-        public static void InitializeUsers()
+        protected static List<User> users = [];
+        protected static List<Flight> flights = [];
+        protected static List<Flight> bookedFlights = [];
+
+        public static void InitializeFlightsAndUsers()
         {
-            users.Add(new User { Id = 2, UserName = "User1", Token = UserToken.Passenger });
-            users.Add(new User { Id=1,UserName="Manager1",Token= UserToken.Manager });
+            FlightRepository flightRepository = new FlightRepository();
+            flights = flightRepository.LoadFlightsFromFile();
+
+            UserRepository userRepository = new UserRepository();
+            users = userRepository.LoadUsersFromFile();
+            bookedFlights = flightRepository.LoadBookedFlightsFromFile();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Loaded {flights.Count} flights!");
+            Console.WriteLine($"Loaded {bookedFlights.Count} booked flights!");
+            Console.WriteLine($"Loaded {users.Count} users!");
+            Console.WriteLine("Press enter to countinue!");
+            Console.ResetColor();
+            Console.ReadLine();
 
         }
-        public static void InitializeFlights()
+        public static void LogIn()
         {
-            flights.Add(new Flight
+            Console.WriteLine("Write your username to enter: ");
+            string? username = Console.ReadLine() ?? "";
+            if (username != null)
             {
-                Price = 900.00m,
-                DepartureCountry = "China",
-                DestinationCountry = "South Korea",
-                DepartureDate = DateTime.Now.AddDays(7),
-                DepartureAirport = "PEK",
-                ArrivalAirport = "ICN",
-                FlightClass = FlightClass.Business
-            });
-            flights.Add(new Flight
-            {
-                Price = 350.00m,
-                DepartureCountry = "USA",
-                DestinationCountry = "Canada",
-                DepartureDate = DateTime.Now.AddDays(2),
-                DepartureAirport = "JFK",
-                ArrivalAirport = "YYZ",
-                FlightClass = FlightClass.Economy
-            });
-            flights.Add(new Flight
-            {
-                Price = 750.00m,
-                DepartureCountry = "France",
-                DestinationCountry = "Italy",
-                DepartureDate = DateTime.Now.AddDays(5),
-                DepartureAirport = "CDG",
-                ArrivalAirport = "FCO",
-                FlightClass = FlightClass.Business
-            });
+                if (users.Where(u => u.UserName == username).Count() > 0)
+                {
+                    if (users.First(u => u.UserName == username).IsManager())
+                    {
+                        Console.WriteLine($"Welcome {username}! Press any key to continue.");
+                        Console.ReadLine();
+                        ManagerUtility.Initialize();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Welcome {username}! Press any key to continue.");
+                        Console.ReadLine();
+                        PassengerUtility.Initialize();
+                    }
+                }
+
+            }
         }
+
+
+
+
+
+
+
 
 
 
