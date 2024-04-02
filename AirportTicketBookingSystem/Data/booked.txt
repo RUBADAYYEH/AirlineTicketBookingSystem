@@ -1,1 +1,5 @@
-
+2,150,United States,France,24/03/2024 18:30:00,JFK,CDG,Economy
+3,200,Germany,Italy,24/03/2024 14:15:00,FRA,FCO,FirstClass
+4,400,Japan,Australia,24/03/2024 09:00:00,NRT,SYD,Economy
+5,100,Brazil,Argentina,24/03/2024 16:45:00,GRU,EZE,Economy
+6,350,United Kingdom,Spain,24/03/2024 20:20:00,LHR,MAD,Business

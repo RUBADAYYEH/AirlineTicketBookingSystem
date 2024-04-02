@@ -1,15 +1,20 @@
-﻿using System;
+﻿using AirportTicketBookingSystem.CustomAttributes;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace AirportTicketBookingSystem.Domain.FlightManagement
 {
-    public class Flight
+    public  class Flight
     {
-
-        public required int FlightId { get; init; }
+       [Required(ErrorMessage ="flight id must be entered.")]
+        
+       public  int FlightId { get; init; }
         public decimal Price { get; set; }
         public required string DepartureCountry { get; init; }
         public required string DestinationCountry { get; init; }
+
+        [DateIsNowOrLaterAttribute(ErrorMessage = "Invalid Date, should be between current date and later.")]
         public required DateTime DepartureDate { get; init; }
         public required string DepartureAirport { get; init; }
         public required string ArrivalAirport { get; set; }
@@ -21,9 +26,10 @@ namespace AirportTicketBookingSystem.Domain.FlightManagement
         }
         public string SaveToFile()
         {
-            return $"{FlightId};{Price};{DepartureCountry};{DestinationCountry};{DepartureDate};{DepartureAirport};{ArrivalAirport};{FlightClass}";
+            return $"{FlightId},{Price},{DepartureCountry},{DestinationCountry},{DepartureDate},{DepartureAirport},{ArrivalAirport},{FlightClass}";
         }
 
 
     }
+
 }

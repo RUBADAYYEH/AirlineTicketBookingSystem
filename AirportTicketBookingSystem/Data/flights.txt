@@ -1,4 +1,4 @@
-2;100;USA;Canada;24/03/2024 22:47:04;JFK;YYZ;Economy
-3;300;France;Italy;24/03/2024 22:47:04;CDG;FCO;Business
-1;300;China;South Korea;24/03/2024 22:47:04;PEK;ICN;Business
+2,100,USA,Canada,31/03/2024 22:47:04,JFK,YYZ,Economy
+3,300,France,Italy,31/03/2024 22:47:04,CDG,FCO,Business
+1,300,China,South Korea,31/03/2024 22:47:04,PEK,ICN,Business
 

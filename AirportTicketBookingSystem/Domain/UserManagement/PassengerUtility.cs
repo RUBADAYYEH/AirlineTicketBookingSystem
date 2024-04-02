@@ -11,12 +11,12 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
 {
     public class PassengerUtility : Utilities
     {
-        public static void Initialize()
+        public  void Initialize()
         {
             ShowAllActionsToPassenger();
 
         }
-        public static void ShowAllActionsToPassenger()
+        public  void ShowAllActionsToPassenger()
         {
             Console.ResetColor();
             Console.Clear();
@@ -126,7 +126,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
             }
         }
 
-        public static void ShowBookFlightList()
+        public  void ShowBookFlightList()
         {
             Console.ResetColor();
             Console.Clear();
@@ -266,6 +266,8 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
 
                 }
             } while (userSelection != "0");
+
+            //MUST SEPERATE INTO 2 METHODS
             if (filteredList.Count > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -324,23 +326,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
             Console.WriteLine("Exported status to booked.txt file. Press to exit.");
             Console.ReadLine();
         }
-        private static void WriteflightsToFlightsFile()
-        {
-            string directory = @"C:\Users\Lenovo\source\repos\AirportTicketBookingSystemProject\AirportTicketBookingSystem\Data\";
-            string FileName = "flights.txt";
-            using StreamWriter writer = new($"{directory}{FileName}");
-            StringBuilder sb = new();
-
-            foreach (var i in flights)
-            {
-                sb.AppendLine(i.SaveToFile());
-            }
-            writer.WriteLine(sb.ToString());
-
-            Console.WriteLine("Exported status to flights.txt file. Press to exit.");
-            Console.ReadLine();
-
-        }
+      
 
         public static string DisplayMessageAndReturnValue(string msg)
         {
@@ -367,7 +353,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
             return flights.Where(flight => flight.ArrivalAirport == location).ToList();
 
         }
-        public static List<Flight> FilterBasedOnDestinationLocation(List<Flight> flights, string location)
+        public static  List<Flight> FilterBasedOnDestinationLocation(List<Flight> flights, string location)
         {
             return flights.Where(flight => flight.DestinationCountry == location).ToList();
 

@@ -4,7 +4,6 @@
     {
         public required int Id { get; init; }
         public string? UserName { get; init; }
-        //CHANGE TO ROLE 
         public UserRole Role { get; init; }
 
         public bool IsManager()

@@ -1,0 +1,4 @@
+4,100,USA,Canada,22/01/2024 22:47:04,JFK,YYZ,Economy
+5,300,Spain,Italy,31/01/2024 22:47:04,CDG,FCO,Business
+6,300,North Korea,South Korea,31/01/2024 22:47:04,PEK,ICN,Business
+

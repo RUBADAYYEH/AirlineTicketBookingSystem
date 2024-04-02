@@ -4,7 +4,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportTicketBookingSystem", "AirportTicketBookingSystem.csproj", "{70062A43-1509-4C4F-A8B3-AC913A7FAEA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportTicketBookingSystemTest", "..\AirportTicketBookingSystemTest\AirportTicketBookingSystemTest.csproj", "{A0473E84-AE42-4888-90B6-8E508C741942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportTicketBookingSystemTest", "..\AirportTicketBookingSystemTest\AirportTicketBookingSystemTest.csproj", "{A0473E84-AE42-4888-90B6-8E508C741942}"
 	ProjectSection(ProjectDependencies) = postProject
 		{70062A43-1509-4C4F-A8B3-AC913A7FAEA8} = {70062A43-1509-4C4F-A8B3-AC913A7FAEA8}
 	EndProjectSection

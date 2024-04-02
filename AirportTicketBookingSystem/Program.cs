@@ -3,10 +3,11 @@ namespace AirportTicketBookingSystem
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
+           
             Utilities.InitializeFlightsAndUsers();
-          
+
             Utilities.LogIn();
         }
     }

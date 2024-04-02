@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 
 
-namespace AirportTicketBookingSystem
+namespace AirportTicketBookingSystem.Data
 {
     internal class UserRepository
     {
-        private string directory = @"C:\Users\Lenovo\source\repos\AirportTicketBookingSystemProject\AirportTicketBookingSystem\Data\";
-        private string usersFileName = "users.txt";
+        private const string directory = @"C:\Users\Lenovo\source\repos\AirportTicketBookingSystemProject\AirportTicketBookingSystem\Data\";
+        private const string usersFileName = "users.txt";
 
-        private void CheckForExistingFile()
+        private static void CheckForExistingFile()
         {
             string path = $"{directory}{usersFileName}";
             bool exists = File.Exists(path);
@@ -24,7 +24,7 @@ namespace AirportTicketBookingSystem
             }
 
         }
-        public List<User> LoadUsersFromFile()
+        public static List<User> LoadUsersFromFile()
         {
             List<User> users = [];
             string path = $"{directory}{usersFileName}";
@@ -34,7 +34,11 @@ namespace AirportTicketBookingSystem
                 string[] usersAsString = File.ReadAllLines(path);
                 for (int i = 0; i < usersAsString.Length; i++)
                 {
-                    string[] userSplits = usersAsString[i].Split(';');
+                    string[] userSplits = usersAsString[i].Split(',');
+                    if (userSplits.Length < 3)
+                    {
+                        Console.WriteLine($"Invalid input format {usersAsString[i]}");
+                    }
                     bool success = int.TryParse(userSplits[0], out int userId);
                     if (!success)
                     {
@@ -55,12 +59,14 @@ namespace AirportTicketBookingSystem
                 Console.WriteLine("Something went wrong when reading the file. ");
                 Console.WriteLine(iex.Message);
 
-            }catch (FileNotFoundException fex) {
+            }
+            catch (FileNotFoundException fex)
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("The file couldn't be found!");
                 Console.WriteLine(fex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Something went wrong while loading the file!");
