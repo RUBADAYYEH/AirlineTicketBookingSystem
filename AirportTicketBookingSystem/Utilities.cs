@@ -47,7 +47,7 @@ namespace AirportTicketBookingSystem
                         Console.WriteLine($"Welcome {username}! Press any key to continue.");
                         Console.ReadLine();
                         ManagerUtility managerUtility=new ();
-                        ManagerUtility.Initialize();
+                        managerUtility.Initialize();
                     }
                     else
                     {

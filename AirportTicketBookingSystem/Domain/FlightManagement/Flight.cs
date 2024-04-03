@@ -5,20 +5,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AirportTicketBookingSystem.Domain.FlightManagement
 {
-    public  class Flight
+    public record Flight
     {
-       [Required(ErrorMessage ="flight id must be entered.")]
-        
-       public  int FlightId { get; init; }
+        [Required(ErrorMessage = "flight id must be entered.")]
+
+        public int FlightId { get; init; }
         public decimal Price { get; set; }
+
+        [Required(ErrorMessage = "flight departure country must be entered.")]
         public required string DepartureCountry { get; init; }
         public required string DestinationCountry { get; init; }
 
-        [DateIsNowOrLaterAttribute(ErrorMessage = "Invalid Date, should be between current date and later.")]
+        [DateIsNowOrLater(ErrorMessage = "Invalid Date, should be between current date and later.")]
+        [Required(ErrorMessage = " Departure date must be entered.")]
         public required DateTime DepartureDate { get; init; }
         public required string DepartureAirport { get; init; }
         public required string ArrivalAirport { get; set; }
-        public required  FlightClass FlightClass { get; init; }
+        public required FlightClass FlightClass { get; init; }
 
         public override string ToString()
         {

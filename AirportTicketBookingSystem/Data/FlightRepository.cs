@@ -84,13 +84,23 @@ namespace AirportTicketBookingSystem.Data
                             flightClass = FlightClass.Economy;
                         }
 
-                        Console.WriteLine(parsedDepartureDate);
+                      //  Console.WriteLine(parsedDepartureDate);
 
-                        Flight newFlight = new() { FlightId = flightID, Price = price, DepartureCountry = departureCountry, DestinationCountry = destinationCountry, DepartureDate = parsedDepartureDate, DepartureAirport = departureAirport, ArrivalAirport = arrivalAirport, FlightClass = flightClass };
+                        Flight newFlight = new() 
+                        {
+                            FlightId = flightID,
+                            Price = price,
+                            DepartureCountry = departureCountry,
+                            DestinationCountry = destinationCountry,
+                            DepartureDate = parsedDepartureDate,
+                            DepartureAirport = departureAirport,
+                            ArrivalAirport = arrivalAirport,
+                            FlightClass = flightClass 
+                        };
                         var validationResults = new List<ValidationResult>();
                         var context = new ValidationContext(newFlight);
-                        bool isValid = Validator.TryValidateObject(newFlight, context, validationResults);
-                        if (!isValid)
+                        Validator.ValidateObject(newFlight, context);
+                        if (!true)
                         {
                             foreach (var validationResult in validationResults)
                             {
