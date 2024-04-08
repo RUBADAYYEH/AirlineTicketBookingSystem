@@ -5,8 +5,10 @@ namespace AirportTicketBookingSystem
     {
         static void Main()
         {
-           
-            Utilities.InitializeFlightsAndUsers();
+
+            Utilities.InitializeFlights();
+            Utilities.InitializeUsers();
+            Utilities.LoadBookedTickets();
 
             Utilities.LogIn();
         }

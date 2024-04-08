@@ -13,10 +13,6 @@ namespace AirportTicketBookingSystem.Data
     {
         private const string directory = @"C:\Users\Lenovo\source\repos\AirportTicketBookingSystemProject\AirportTicketBookingSystem\Data\";
         private const string flightFileName = "flights.txt";
-      
-
-
-
         private const string bookedFileName = "booked.txt";
 
 
@@ -56,9 +52,6 @@ namespace AirportTicketBookingSystem.Data
                     }
                     else
                     {
-
-                        //{FlightId};{Price};{DepartureCountry}{DestinationCountry}{DepartureDate}{DepartureAirport}{ArrivalAirport}{FlightClass}
-
                         bool success = int.TryParse(flightSplits[0], out int flightID);
                         if (!success)
                         {
@@ -84,8 +77,6 @@ namespace AirportTicketBookingSystem.Data
                             flightClass = FlightClass.Economy;
                         }
 
-                      //  Console.WriteLine(parsedDepartureDate);
-
                         Flight newFlight = new() 
                         {
                             FlightId = flightID,
@@ -99,8 +90,8 @@ namespace AirportTicketBookingSystem.Data
                         };
                         var validationResults = new List<ValidationResult>();
                         var context = new ValidationContext(newFlight);
-                        Validator.ValidateObject(newFlight, context);
-                        if (!true)
+                       bool valid= Validator.TryValidateObject(newFlight, context,validationResults);
+                        if (!valid)
                         {
                             foreach (var validationResult in validationResults)
                             {

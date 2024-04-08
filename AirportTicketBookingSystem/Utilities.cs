@@ -1,6 +1,7 @@
 ﻿using AirportTicketBookingSystem.Data;
 using AirportTicketBookingSystem.Domain.FlightManagement;
 using AirportTicketBookingSystem.Domain.UserManagement;
+using AirportTicketBookingSystem.Domain.StandardMessages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,45 +15,49 @@ namespace AirportTicketBookingSystem
 
     public class Utilities
     {
-        public static  List<User> users = [];
-        public static List<Flight> flights = [];
-        public static List<Flight> bookedFlights = [];
+         static List<User> users = [];
+         static List<Flight> flights = [];
+         static List<Flight> bookedFlights = [];
 
-        public static void InitializeFlightsAndUsers()
+        public static  void InitializeUsers()
         {
-
-            flights = FlightRepository.LoadFlightsFromFile("self");
             users = UserRepository.LoadUsersFromFile();
-            bookedFlights = FlightRepository.LoadBookedFlightsFromFile("self");
-
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Loaded {users.Count} users!");
+            StandardMessage.EscapeEventByAnyKeyMessage();
+   
+        }
+        public static void InitializeFlights()
+        {
+            flights = FlightRepository.LoadFlightsFromFile("self");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Loaded {flights.Count} flights!");
+            StandardMessage.EscapeEventByAnyKeyMessage();
+        }
+        public static void LoadBookedTickets()
+        {
+            bookedFlights = FlightRepository.LoadBookedFlightsFromFile("self");
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Loaded {bookedFlights.Count} booked flights!");
-            Console.WriteLine($"Loaded {users.Count} users!");
-            Console.WriteLine("Press enter to countinue!");
-            Console.ResetColor();
-            Console.ReadLine();
-
+            StandardMessage.EscapeEventByAnyKeyMessage();
         }
         public static void LogIn()
         {
             Console.WriteLine("Write your username to enter: ");
             string? username = Console.ReadLine() ?? "";
-            if (username != null)
-            {
-                if (users.Where(u => u.UserName == username).Any()) // count vs any 
+            bool usernameIsNotNull=UserValidator.ValidateUserByUsername(username);
+            if (usernameIsNotNull) { 
+                if (users.Where(u => u.UserName == username).Any()) 
                 {
-                    if (users.First(u => u.UserName == username).IsManager())
+                    if (users.Single(u => u.UserName == username).IsManager())
                     {
-                        Console.WriteLine($"Welcome {username}! Press any key to continue.");
-                        Console.ReadLine();
+                        StandardMessage.WelcomeUserMessage(username);
                         ManagerUtility managerUtility=new ();
                         managerUtility.Initialize();
                     }
                     else
                     {
-                        Console.WriteLine($"Welcome {username}! Press any key to continue.");
-                        Console.ReadLine();
+                        StandardMessage.WelcomeUserMessage(username);
                         PassengerUtility passengerUtility = new();
                         passengerUtility.Initialize();
                     }
@@ -60,7 +65,7 @@ namespace AirportTicketBookingSystem
 
             }
         }
-        public static void WriteflightsToFlightsFile()
+        public  static void WriteflightsToFlightsFile()
         {
             string directory = @"C:\Users\Lenovo\source\repos\AirportTicketBookingSystemProject\AirportTicketBookingSystem\Data\";
             string FileName = "flights.txt";
