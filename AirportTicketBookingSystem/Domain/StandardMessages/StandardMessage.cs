@@ -52,6 +52,10 @@ namespace AirportTicketBookingSystem.Domain.StandardMessages
             string? value = Console.ReadLine();
             return value ?? "";
         }
+        public static void Organize()
+        {
+            Console.WriteLine("********************");
+        }
 
     }
 }

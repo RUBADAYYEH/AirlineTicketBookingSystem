@@ -2,7 +2,6 @@
 using AirportTicketBookingSystem.Domain.StandardMessages;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,7 +29,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
                         ShowAllActionsToPassenger();
                         break;
                     case "2":
-                        SearchOnFlightsToBook();
+                        CallFilterApplication();
                         ShowAllActionsToPassenger();
 
                         break;
@@ -146,7 +145,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
                 switch (userSelection)
                 {
                     case "1":
-                        SearchOnFlightsToBook();
+                        CallFilterApplication();
                         break;
                     case "0":
                         ShowAllActionsToPassenger();
@@ -161,6 +160,12 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
 
 
         }
+        private static void CallFilterApplication()
+        {
+            List<Flight> filteredList = new(bookedFlights);
+            filteredList = FilterApplication.FilterBookingList(filteredList);
+            PrintFilteredFlights(filteredList);
+        }
         public static void PrintBookFlightList()
         {
             Console.ResetColor();
@@ -172,68 +177,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
             Console.WriteLine("0: Close application");
             Console.WriteLine("Your selection: ");
         }
-        public  static void SearchOnFlightsToBook()
-        {
-            List<Flight> filteredList = new(flights);
-           
-            string? userSelection;
-            do
-            {
-                PrintSearchTemplateList();
-
-                string? departureLocation;
-                string? destinationLocation;
-                string? departureDate;
-                string? departureAirport;
-                string? destinationAirport;
-
-                userSelection = Console.ReadLine();
-                if (userSelection != null)
-                {
-                    switch (userSelection)
-                    {
-                        case "1":
-                            departureLocation = StandardMessage.DisplayMessageAndReturnValue("Enter your departure Location: ");
-                            filteredList = FilterHandler.HandleFilteringOnDepartureCountry(departureLocation,filteredList);
-                            StandardMessage.EscapeEventByAnyKeyMessage();
-                            break;
-                        case "2":
-                            destinationLocation = StandardMessage.DisplayMessageAndReturnValue("Enter your destination Location: ");
-                            filteredList= FilterHandler.HandleFilteringOnDestinationCountry(destinationLocation, filteredList);
-                            StandardMessage.EscapeEventByAnyKeyMessage();
-                            break;
-                        case "3":
-                            departureDate = StandardMessage.DisplayMessageAndReturnValue("Enter your desired date: (IN THE FORMAT DD/MM/YYYY) ");
-                            filteredList = FilterHandler.HandleFilteringBasedOnDate(departureDate, filteredList);
-                            StandardMessage.EscapeEventByAnyKeyMessage();
-                            break;
-                        case "4":
-                            departureAirport = StandardMessage.DisplayMessageAndReturnValue("Enter your departure Airport: ");
-                            filteredList = FilterHandler.HandleFilteringOnDepartureAirport(departureAirport, filteredList);
-                            StandardMessage.EscapeEventByAnyKeyMessage();
-                            break;
-                        case "5":
-                            destinationAirport = StandardMessage.DisplayMessageAndReturnValue("Enter your destination Airport: ");
-                            filteredList = FilterHandler.HandleFilteringOnDestinationAirport(destinationAirport, filteredList);
-                            StandardMessage.EscapeEventByAnyKeyMessage();
-                            break;
-                        case "6":
-
-                            break;
-                        case "0":
-                            break;
-                        default:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            StandardMessage.InvalidInputMessage();
-                            break;
-                    }
-
-                }
-            } while (userSelection != "0");
-
-            PrintFilteredFlights(filteredList);
-
-        }
+   
 
         public static void PrintFilteredFlights(List<Flight> filteredList)
         {
@@ -286,7 +230,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
             Console.WriteLine("3: Choose Departure Date");
             Console.WriteLine("4: Choose Departure Airport");
             Console.WriteLine("5: Choose Destination Airport");
-            Console.WriteLine("6: filter by price");
+            Console.WriteLine("6: Filter by price");
             Console.WriteLine("0: Finish filtering");
             Console.WriteLine("Your selection: ");
         }

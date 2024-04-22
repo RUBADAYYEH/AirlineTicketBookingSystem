@@ -15,9 +15,9 @@ namespace AirportTicketBookingSystem
 
     public class Utilities
     {
-         static List<User> users = [];
-         static List<Flight> flights = [];
-         static List<Flight> bookedFlights = [];
+        public static List<User> users = [];
+        public static List<Flight> flights = [];
+        public static List<Flight> bookedFlights = [];
 
         public static  void InitializeUsers()
         {
@@ -45,15 +45,14 @@ namespace AirportTicketBookingSystem
         {
             Console.WriteLine("Write your username to enter: ");
             string? username = Console.ReadLine() ?? "";
-            bool usernameIsNotNull=UserValidator.ValidateUserByUsername(username);
+            var usernameIsNotNull=UserValidator.ValidateUserByUsername(username);
             if (usernameIsNotNull) { 
                 if (users.Where(u => u.UserName == username).Any()) 
                 {
                     if (users.Single(u => u.UserName == username).IsManager())
                     {
                         StandardMessage.WelcomeUserMessage(username);
-                        ManagerUtility managerUtility=new ();
-                        managerUtility.Initialize();
+                        ManagerUtility.Initialize();
                     }
                     else
                     {

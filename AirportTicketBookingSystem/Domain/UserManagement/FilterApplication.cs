@@ -118,8 +118,8 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
             Console.WriteLine("3: Choose Departure Date");
             Console.WriteLine("4: Choose Departure Airport");
             Console.WriteLine("5: Choose Destination Airport");
-            Console.WriteLine("6: filter by price");
-            Console.WriteLine("7: filter by Flight Class");
+            Console.WriteLine("6: Filter by price");
+            Console.WriteLine("7: Filter by Flight Class");
             Console.WriteLine("0: Finish filtering");
             Console.WriteLine("Your selection: ");
         }
