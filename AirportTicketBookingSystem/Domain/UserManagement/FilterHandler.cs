@@ -29,8 +29,10 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
         public static List<Flight> HandleFilteringOnDestinationAirport(string destinationAirport, List<Flight> filteredList)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            if (destinationAirport != "")
+            if (destinationAirport.Length > 0)
+            {
                 Console.WriteLine($"You have selected a destination Airport {destinationAirport}!");
+            }
             filteredList = Filter.FilterBasedOnDepartureAirport(filteredList, destinationAirport);
 
             return filteredList;
@@ -39,8 +41,10 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
         public static List<Flight> HandleFilteringOnDepartureCountry(string departureLocation, List<Flight> filteredList)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            if (departureLocation != "")
+            if (departureLocation.Length>0)
+            {
                 Console.WriteLine($"You have selected a departure location {departureLocation}!");
+            }
             filteredList = Filter.FilterBasedOnDepartureLocation(filteredList, departureLocation);
 
             return filteredList;
@@ -48,8 +52,10 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
         public static List<Flight> HandleFilteringOnDestinationCountry(string destinationLocation, List<Flight> filteredList)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            if (destinationLocation != "")
+            if (destinationLocation.Length > 0)
+            {
                 Console.WriteLine($"You have selected a destination location {destinationLocation}!");
+            }
             filteredList = Filter.FilterBasedOnDestinationLocation(filteredList, destinationLocation);
 
             return filteredList;
@@ -57,7 +63,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
         public static List<Flight> HandleFilteringBasedOnDate(string departureDate, List<Flight> filteredList)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            if (departureDate != "")
+            if (departureDate.Length > 0)
             {
 
                 if (DateTime.TryParseExact(departureDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDepartureDate))
@@ -77,8 +83,10 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
         public static List<Flight> HandleFilteringOnDepartureAirport(string departureAirport, List<Flight> filteredList)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            if (departureAirport != "")
+            if (departureAirport.Length > 0)
+            {
                 Console.WriteLine($"You have selected a departure Airport {departureAirport}!");
+            }
             filteredList = Filter.FilterBasedOnDepartureAirport(filteredList, departureAirport);
 
             return filteredList;
