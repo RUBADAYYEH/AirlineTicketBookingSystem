@@ -41,7 +41,7 @@ namespace AirportTicketBookingSystem.Domain.UserManagement
         public static List<Flight> HandleFilteringOnDepartureCountry(string departureLocation, List<Flight> filteredList)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            if (departureLocation.Length>0)
+            if (departureLocation.Length > 0)
             {
                 Console.WriteLine($"You have selected a departure location {departureLocation}!");
             }
